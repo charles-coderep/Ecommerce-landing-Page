@@ -1,0 +1,391 @@
+@import 'fonts';
+@import 'block-positioning';
+@import 'media-queries';
+
+/* color declarations*/
+
+$main-bg: #ebf6f8;
+$orange: #ff5c00;
+$orange-hover: #ee8245;
+$grey-border: #ebebeb;
+$black: #000000;
+$white: #ffffff;
+$grey-text: #9c9c9c;
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: $black;
+  position: relative;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+main.flex {
+  @include portrait-tablet {
+    align-items: center;
+    height: 100vh;
+  }
+}
+
+/* text positioning */
+
+.text-center {
+  text-align: center;
+}
+
+/* font styling */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* colors */
+
+.main-bg {
+  background-color: $main-bg;
+}
+
+/* header */
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 40px 31px;
+  /*
+  put media query here for when the flex-direction is column etc
+  */
+}
+
+.header__logo {
+  img {
+    width: 100px;
+  }
+}
+
+.header__cart-icon {
+  position: relative;
+  width: 24px;
+  cursor: pointer;
+  img {
+    width: 100%;
+  }
+}
+
+.cart-total {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  font-size: 1.3em;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 35px;
+}
+
+.main-container {
+  /* addheight: 100vh; align-items: center; to centralise it*/
+  padding-left: 35px;
+  padding-right: 35px;
+  width: 100%;
+  @include portrait-tablet {
+    width: 50%;
+    height: 100%;
+  }
+}
+
+/* product page */
+/* product description */
+
+.product-description-container {
+  margin-top: 144px;
+  margin-bottom: 85px;
+  @include portrait-tablet {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.product-description {
+  @include laptop {
+    width: 430px;
+  }
+}
+
+.product-description-title {
+  h1 {
+    margin-bottom: 0.75em;
+  }
+}
+
+.product-description__info {
+  p {
+    color: $grey-text;
+  }
+}
+
+/* product card */
+.product-card-container {
+  padding-top: 7.5em;
+  padding-bottom: 8.5em;
+  @include portrait-tablet {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+}
+
+.product-card {
+  background-color: $white;
+  padding: 4em;
+  border-radius: 5px;
+  box-shadow: 1px 1px 15px 1px rgba(125, 125, 125, 0.1),
+    -1px -1px 15px 1px rgba(125, 125, 125, 0.1);
+  @include portrait-tablet {
+    width: 318px;
+  }
+}
+
+.product-card__image {
+  margin-bottom: 3em;
+  margin-top: 1.5em;
+  img {
+    width: 270px;
+  }
+}
+
+.product-title {
+  margin-bottom: 1.5em;
+}
+
+.product-price {
+  margin-bottom: 2.5em;
+  p {
+    color: $orange;
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+.button {
+  margin-bottom: 2em;
+  width: 190px;
+  a {
+    position: relative;
+    background-color: $orange;
+    height: 48px;
+    border-radius: 30px;
+    width: 100%;
+    text-align: center;
+    line-height: 48px;
+    color: $white;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.03em;
+    display: block;
+    &:hover {
+      background-color: $orange-hover;
+    }
+  }
+}
+
+/* Spinner */
+
+.loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.8em;
+  height: 1.8em;
+  margin-top: -0.9em;
+  margin-left: -0.9em;
+  border-radius: 50%;
+  border: 2px solid $white;
+  border-top-color: $black;
+  animation: loading 0.4s linear infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* cart */
+.cart {
+  display: block;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 90%;
+  transform: translateX(100%);
+  height: 100vh;
+  z-index: 500;
+  background-color: $white;
+  transition: transform 0.3s ease-in-out;
+  @include landscape-tablet {
+    width: 430px;
+  }
+  cart-close {
+    img {
+      width: 20px;
+    }
+  }
+}
+
+.active {
+  transform: translateX(0%);
+}
+
+.cart-container {
+  position: relative;
+  height: 100vh;
+}
+
+.cart-title-container {
+  padding: 3.5em;
+  border-bottom: 1px solid $grey-border;
+}
+
+.cart-close {
+  position: relative;
+  width: 15px;
+  .cart-close__image {
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.cart-container__inner {
+  padding: 0 4em;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+  height: 50vh;
+  @include portrait-tablet {
+    height: 50%;
+  }
+}
+
+.cart-container__inner::-webkit-scrollbar {
+  display: none;
+}
+
+.cart-item {
+  padding: 3em 0;
+  border-bottom: 1px solid $grey-border;
+}
+
+.cart-item__image,
+.cart-item-description {
+  width: 43%;
+}
+
+.cart-item__image {
+  padding-right: 0.5em;
+  img {
+    width: 105px;
+    @include laptop {
+      width: 130px;
+    }
+  }
+}
+
+.cart-item-description {
+  padding-left: 0.5em;
+  .product-title {
+    margin-bottom: 0.5em;
+  }
+}
+
+.cart-item .product-price {
+  margin-bottom: 1em;
+}
+
+.cart-item-remove {
+  letter-spacing: 0.18em;
+  a {
+    color: $grey-text;
+    text-decoration: none;
+    border-bottom: 1px solid $grey-text;
+    padding-bottom: 0.1em;
+  }
+}
+
+.cart-footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  padding: 0 3em 4em;
+  border-top: 1px solid #ebebeb;
+  .button {
+    width: 100%;
+  }
+}
+
+.cart-subtotal {
+  margin: 1em 0;
+  span:first-of-type {
+    margin-right: 0.2em;
+  }
+}
+
+.cart-continue-shopping {
+  a {
+    color: $black;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border-bottom: 1px solid $black;
+    padding-bottom: 0.2em;
+  }
+}
+
+/* overlay */
+.overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(27, 27, 27, 0.5);
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.overlay.open-cart {
+  display: block;
+  opacity: 1;
+}
