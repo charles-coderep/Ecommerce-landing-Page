@@ -102,7 +102,7 @@ header {
   padding-left: 35px;
   padding-right: 35px;
   width: 100%;
-  @include portrait-tablet {
+  @include landscape-tablet {
     width: 50%;
     height: 100%;
   }
